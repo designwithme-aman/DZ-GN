@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DZ!GN — Product & UX Designer</title>
+<meta name="description" content="Product & UX Designer with 2+ years shipping interfaces and the code behind them." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: '#F5F4EF',
+          paperdim: '#EBE9E2',
+          ink: '#15151B',
+          inksoft: '#5A5A63',
+          inkfaint: '#9797A0',
+          cobalt: '#3346FF',
+          cobaltdeep: '#1F2ACC',
+          coral: '#FF5B3D',
+          sage: '#AEBF9E',
+          line: '#DEDCD3',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        borderRadius: {
+          card: '18px',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #F5F4EF; }
+
+  ::selection { background: #3346FF; color: #F5F4EF; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  .tilt-1 { transform: rotate(-3deg); }
+  .tilt-2 { transform: rotate(2deg); }
+  .tilt-3 { transform: rotate(-1.5deg); }
+  .tilt-4 { transform: rotate(1deg); }
+  .tilt-1:hover, .tilt-2:hover, .tilt-3:hover, .tilt-4:hover { transform: rotate(0deg) translateY(-4px); }
+  .bento-card { transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease; }
+
+  .grain {
+    background-image: radial-gradient(#15151B 0.6px, transparent 0.6px);
+    background-size: 14px 14px;
+  }
+
+  .noscroll-x { overflow-x: hidden; }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .case-image {
+    background: repeating-linear-gradient(135deg, rgba(21,21,27,0.04) 0px, rgba(21,21,27,0.04) 1px, transparent 1px, transparent 14px);
+  }
+
+  .mono-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; opacity: 1; transform: none; }
+    .marquee-track { animation: none; }
+  }
+
+  .focus-ring:focus-visible {
+    outline: 2px solid #3346FF;
+    outline-offset: 3px;
+  }
+</style>
+</head>
+
+<body class="font-body text-ink noscroll-x antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="mt-4 flex items-center justify-between bg-paper/80 backdrop-blur-md border border-line rounded-full px-5 py-3">
+      <a href="#top" class="font-display font-semibold text-lg tracking-tight flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-ink text-paper flex items-center justify-center text-xs font-mono">AD</span>
+      DZ!NG
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-inksoft font-medium">
+        <a href="#work" class="hover:text-ink transition focus-ring rounded">Work</a>
+        <a href="#services" class="hover:text-ink transition focus-ring rounded">Services</a>
+        <a href="#process" class="hover:text-ink transition focus-ring rounded">Process</a>
+        <a href="#about" class="hover:text-ink transition focus-ring rounded">About</a>
+      </nav>
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-ink text-paper text-sm font-medium px-4 py-2 rounded-full hover:bg-cobalt transition focus-ring">
+        Let's talk
+        <span aria-hidden="true">→</span>
+      </a>
+      <button id="menuBtn" aria-label="Open menu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-line focus-ring">
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M0 1H16" stroke="#15151B" stroke-width="1.5"/><path d="M0 6H16" stroke="#15151B" stroke-width="1.5"/><path d="M0 11H16" stroke="#15151B" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="hidden md:hidden max-w-7xl mx-auto px-6 mt-2">
+    <div class="bg-paper border border-line rounded-2xl px-6 py-5 flex flex-col gap-4 text-sm font-medium">
+      <a href="#work" class="py-1">Work</a>
+      <a href="#services" class="py-1">Services</a>
+      <a href="#process" class="py-1">Process</a>
+      <a href="#about" class="py-1">About</a>
+      <a href="#contact" class="mt-2 bg-ink text-paper text-center px-4 py-2 rounded-full">Let's talk →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="top" class="relative pt-40 md:pt-48 pb-24 md:pb-32 px-6 md:px-10 overflow-hidden">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-y-16 gap-x-8 items-start">
+
+    <!-- left: headline -->
+    <div class="lg:col-span-7">
+      <div class="inline-flex items-center gap-2 mono-tag uppercase text-inksoft border border-line rounded-full px-3 py-1.5 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-sage"></span>
+        Open for Q3 projects
+      </div>
+
+      <h1 class="font-display font-medium leading-[0.98] text-[13vw] sm:text-6xl md:text-7xl xl:text-[5.2rem] tracking-tight">
+        Interfaces that
+        <span class="block">make sense.</span>
+        <span class="block text-inkfaint">Products that <span class="italic text-cobalt">ship.</span></span>
+      </h1>
+
+      <p class="mt-8 max-w-md text-inksoft text-lg leading-relaxed">
+        I'm a product &amp; UX designer with an engineering background — I design the screen, then I understand exactly what it costs to build it. Three-plus years turning vague briefs into interfaces people actually use.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="#work" class="inline-flex items-center gap-2 bg-ink text-paper px-6 py-3.5 rounded-full font-medium hover:bg-cobalt transition focus-ring">
+          View case studies
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 border border-ink/20 px-6 py-3.5 rounded-full font-medium hover:border-ink transition focus-ring">
+          Book a call
+        </a>
+      </div>
+
+      <div class="mt-12 flex items-center gap-6 mono-tag text-inkfaint uppercase">
+        <span>Figma</span>
+        <span class="w-1 h-1 rounded-full bg-line"></span>
+        <span>React</span>
+        <span class="w-1 h-1 rounded-full bg-line"></span>
+        <span>Flutter</span>
+        <span class="w-1 h-1 rounded-full bg-line"></span>
+        <span>Node.js</span>
+      </div>
+    </div>
+
+    <!-- right: bento constellation -->
+    <div class="lg:col-span-5 relative h-[420px] sm:h-[480px] lg:h-[560px]">
+
+      <!-- experience stat card -->
+      <div class="bento-card tilt-1 absolute top-0 left-0 sm:left-6 w-40 sm:w-44 bg-white border border-line rounded-card p-5 shadow-[0_10px_30px_-15px_rgba(21,21,27,0.25)]">
+        <p class="font-display text-4xl leading-none">2+</p>
+        <p class="mt-2 text-xs text-inksoft leading-snug">Years designing shipped products</p>
+      </div>
+
+      <!-- terminal / tech card -->
+      <div class="bento-card tilt-2 absolute top-16 sm:top-20 right-0 w-48 sm:w-52 bg-ink text-paper rounded-card p-5 shadow-[0_15px_35px_-15px_rgba(21,21,27,0.5)]">
+        <div class="flex items-center gap-1.5 mb-3">
+          <span class="w-2 h-2 rounded-full bg-coral"></span>
+          <span class="w-2 h-2 rounded-full bg-sage"></span>
+          <span class="w-2 h-2 rounded-full bg-cobalt"></span>
+        </div>
+        <p class="mono-tag text-inkfaint">$ current_stack</p>
+        <p class="mono-tag mt-1">React · Flutter</p>
+        <p class="mono-tag">Node · Mongo</p>
+      </div>
+
+      <!-- availability / status card -->
+      <div class="bento-card tilt-3 absolute top-[190px] sm:top-[220px] left-2 sm:left-10 w-52 sm:w-56 bg-cobalt text-paper rounded-card p-5 shadow-[0_15px_35px_-15px_rgba(51,70,255,0.55)]">
+        <p class="mono-tag uppercase text-paper/70">Currently building</p>
+        <p class="mt-2 font-display text-lg leading-snug">An education platform for 2,000+ daily users</p>
+      </div>
+
+      <!-- quote / credibility card -->
+      <div class="bento-card tilt-4 absolute bottom-6 right-2 sm:right-4 w-44 sm:w-48 bg-paperdim border border-line rounded-card p-5">
+        <p class="text-sm leading-snug">"Ships the design system and the working screen."</p>
+        <p class="mt-3 mono-tag text-inkfaint">— Project Lead</p>
+      </div>
+
+      <!-- swatch card -->
+      <div class="bento-card tilt-2 absolute bottom-24 sm:bottom-28 left-0 w-24 h-24 bg-sage rounded-card hidden sm:block"></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOGO / CONTEXT STRIP ================= -->
+<section class="border-y border-line py-6 overflow-hidden">
+  <div class="marquee-track mono-tag text-inkfaint uppercase gap-16 pl-16">
+    <div class="flex gap-16">
+      <span>Design Systems</span>
+      <span>Mobile Apps</span>
+      <span>Dashboards</span>
+      <span>Brand Identity</span>
+      <span>Full-Stack Prototypes</span>
+      <span>Design Systems</span>
+      <span>Mobile Apps</span>
+      <span>Dashboards</span>
+      <span>Brand Identity</span>
+      <span>Full-Stack Prototypes</span>
+    </div>
+    <div class="flex gap-16 pl-16" aria-hidden="true">
+      <span>Design Systems</span>
+      <span>Mobile Apps</span>
+      <span>Dashboards</span>
+      <span>Brand Identity</span>
+      <span>Full-Stack Prototypes</span>
+      <span>Design Systems</span>
+      <span>Mobile Apps</span>
+      <span>Dashboards</span>
+      <span>Brand Identity</span>
+      <span>Full-Stack Prototypes</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DESIGN PHILOSOPHY ================= -->
+<section id="philosophy" class="px-6 md:px-10 py-28 md:py-36">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal grid md:grid-cols-12 gap-8 mb-16">
+      <div class="md:col-span-4">
+        <p class="mono-tag uppercase text-inkfaint mb-3">How I think</p>
+        <h2 class="font-display text-3xl md:text-4xl leading-tight">Three ideas behind every screen I ship.</h2>
+      </div>
+      <div class="md:col-span-7 md:col-start-6 flex items-end">
+        <p class="text-inksoft text-lg leading-relaxed">Minimalism isn't an aesthetic preference — it's a discipline. Every element on screen has to earn its place, or it gets cut.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="reveal bg-white border border-line rounded-card p-8 md:p-10 md:row-span-2 md:col-span-1 flex flex-col justify-between min-h-[320px]">
+        <div>
+          <p class="mono-tag text-inkfaint mb-6">01</p>
+          <h3 class="font-display text-2xl mb-3">Clarity over decoration</h3>
+          <p class="text-inksoft leading-relaxed">If a user has to pause to interpret it, it's not designed yet. Structure, hierarchy and whitespace do the work before color ever gets involved.</p>
+        </div>
+        <div class="mt-8 h-24 rounded-lg bg-paperdim grain"></div>
+      </div>
+
+      <div class="reveal bg-ink text-paper rounded-card p-8 md:p-10 flex flex-col justify-between min-h-[320px]">
+        <div>
+          <p class="mono-tag text-inkfaint mb-6">02</p>
+          <h3 class="font-display text-2xl mb-3">Systems, not screens</h3>
+          <p class="text-paper/70 leading-relaxed">A single beautiful screen is a coincidence. A type scale, a spacing grid and a component library are what make the next fifty screens consistent by default.</p>
+        </div>
+        <div class="mt-8 flex gap-2">
+          <span class="w-8 h-8 rounded bg-cobalt"></span>
+          <span class="w-8 h-8 rounded bg-coral"></span>
+          <span class="w-8 h-8 rounded bg-sage"></span>
+          <span class="w-8 h-8 rounded bg-paper/20"></span>
+        </div>
+      </div>
+
+      <div class="reveal bg-cobalt text-paper rounded-card p-8 md:p-10 flex flex-col justify-between min-h-[320px]">
+        <div>
+          <p class="mono-tag text-paper/60 mb-6">03</p>
+          <h3 class="font-display text-2xl mb-3">Code-aware design</h3>
+          <p class="text-paper/80 leading-relaxed">I know what a component costs in React or Flutter before I design it, so handoff is never a translation problem — it's a copy-paste problem.</p>
+        </div>
+        <p class="mt-8 mono-tag text-paper/60">&lt;Design system state="production" /&gt;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES & TECH STACK ================= -->
+<section id="services" class="px-6 md:px-10 py-28 md:py-36 bg-paperdim/60 border-y border-line">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+      <div>
+        <p class="mono-tag uppercase text-inkfaint mb-3">Services</p>
+        <h2 class="font-display text-3xl md:text-4xl leading-tight max-w-xl">What I do, and what I build it with.</h2>
+      </div>
+      <p class="text-inksoft max-w-sm">One person, both sides of the handoff — from the first wireframe to the deployed component.</p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-5 mb-8">
+      <div class="reveal bg-white border border-line rounded-card p-7 hover:border-cobalt/40 transition">
+        <div class="w-10 h-10 rounded-full bg-cobalt/10 flex items-center justify-center mb-5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="#3346FF" stroke-width="1.5"/><path d="M4 9h16" stroke="#3346FF" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-2">UI/UX Design</h3>
+        <p class="text-sm text-inksoft leading-relaxed">Wireframes, flows and pixel-accurate interfaces built on a real design system.</p>
+      </div>
+
+      <div class="reveal bg-white border border-line rounded-card p-7 hover:border-cobalt/40 transition">
+        <div class="w-10 h-10 rounded-full bg-coral/10 flex items-center justify-center mb-5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#FF5B3D" stroke-width="1.5"/><path d="M12 4v16M4 12h16" stroke="#FF5B3D" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-2">Graphic &amp; Brand</h3>
+        <p class="text-sm text-inksoft leading-relaxed">Logos, color systems and visual identities that hold up across every touchpoint.</p>
+      </div>
+
+      <div class="reveal bg-white border border-line rounded-card p-7 hover:border-cobalt/40 transition">
+        <div class="w-10 h-10 rounded-full bg-sage/20 flex items-center justify-center mb-5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5l-6 7 6 7M16 5l6 7-6 7" stroke="#6B7A5E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-2">Frontend Build</h3>
+        <p class="text-sm text-inksoft leading-relaxed">React and Flutter implementation of the exact system I designed — no drift.</p>
+      </div>
+
+      <div class="reveal bg-white border border-line rounded-card p-7 hover:border-cobalt/40 transition">
+        <div class="w-10 h-10 rounded-full bg-ink/10 flex items-center justify-center mb-5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="#15151B" stroke-width="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="#15151B" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-2">Backend Prototypes</h3>
+        <p class="text-sm text-inksoft leading-relaxed">Node, Express and MongoDB APIs when a design needs real data behind it.</p>
+      </div>
+    </div>
+
+    <!-- tech stack pills -->
+    <div class="reveal bg-white border border-line rounded-card p-7 md:p-9">
+      <p class="mono-tag uppercase text-inkfaint mb-5">Tech stack</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div>
+          <p class="text-xs text-inkfaint mb-3 mono-tag">DESIGN</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">Figma</span>
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">Illustrator</span>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs text-inkfaint mb-3 mono-tag">FRONTEND</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">React</span>
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">Tailwind</span>
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">Flutter</span>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs text-inkfaint mb-3 mono-tag">BACKEND</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">Node.js</span>
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">Express</span>
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">Firebase</span>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs text-inkfaint mb-3 mono-tag">DATA</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">MongoDB</span>
+            <span class="mono-tag border border-line rounded-full px-3 py-1.5">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASE STUDIES ================= -->
+<section id="work" class="px-6 md:px-10 py-28 md:py-36">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal mb-16">
+      <p class="mono-tag uppercase text-inkfaint mb-3">Selected work</p>
+      <h2 class="font-display text-3xl md:text-4xl leading-tight max-w-xl">Case studies, not just screenshots.</h2>
+    </div>
+
+    <!-- case 1 -->
+    <div class="reveal grid lg:grid-cols-12 gap-8 lg:gap-12 items-start pb-20 mb-20 border-b border-line">
+      <div class="lg:col-span-5">
+        <div class="case-image aspect-[4/5] rounded-card bg-gradient-to-br from-cobalt to-cobaltdeep relative overflow-hidden">
+          <div class="absolute inset-6 bg-paper/95 rounded-lg p-4 flex flex-col gap-3">
+            <div class="h-3 w-16 bg-ink/10 rounded-full"></div>
+            <div class="h-24 rounded-md bg-gradient-to-r from-coral to-cobalt"></div>
+            <div class="h-2.5 w-full bg-ink/10 rounded-full"></div>
+            <div class="h-2.5 w-2/3 bg-ink/10 rounded-full"></div>
+            <div class="mt-auto flex gap-2">
+              <div class="h-8 w-8 rounded-full bg-ink/10"></div>
+              <div class="h-8 flex-1 rounded-full bg-ink/10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="mono-tag border border-line rounded-full px-3 py-1">Mobile App</span>
+          <span class="mono-tag border border-line rounded-full px-3 py-1">Design System</span>
+          <span class="mono-tag border border-line rounded-full px-3 py-1">Social</span>
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl mb-6">Glimpse — a photo-first social app</h3>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">GOAL</p>
+            <p class="text-inksoft leading-relaxed">Design a coherent auth-to-chat experience with no existing brand guidelines to lean on.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">APPROACH</p>
+            <p class="text-inksoft leading-relaxed">Pulled a shared design system out of scattered explorations before touching a single production screen.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">SOLUTION</p>
+            <p class="text-inksoft leading-relaxed">Full auth suite, a multi-state chat input with an emoji picker, and a gradient-driven landing flow.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">STACK</p>
+            <p class="text-inksoft leading-relaxed font-mono text-sm">Figma · Flutter · Firebase · Riverpod</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- case 2 -->
+    <div class="reveal grid lg:grid-cols-12 gap-8 lg:gap-12 items-start pb-20 mb-20 border-b border-line">
+      <div class="lg:col-span-7 lg:order-1 order-2">
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="mono-tag border border-line rounded-full px-3 py-1">EdTech</span>
+          <span class="mono-tag border border-line rounded-full px-3 py-1">Information Architecture</span>
+          <span class="mono-tag border border-line rounded-full px-3 py-1">Client Project</span>
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl mb-6">SIIS — an institutional communication platform</h3>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">GOAL</p>
+            <p class="text-inksoft leading-relaxed">Rebuild a 26-screen institutional app from scratch, on a fixed six-week client timeline.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">APPROACH</p>
+            <p class="text-inksoft leading-relaxed">Rebuilt structure from the Figma source of truth and prioritised the Communication module as the highest-value flow first.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">SOLUTION</p>
+            <p class="text-inksoft leading-relaxed">A four-tab architecture — Home, Dashboard, Communication, Profile — modeled on messaging patterns staff already knew.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">STACK</p>
+            <p class="text-inksoft leading-relaxed font-mono text-sm">Flutter · go_router · Dio · Firebase · PHP/MySQL</p>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-5 lg:order-2 order-1">
+        <div class="case-image aspect-[4/5] rounded-card bg-gradient-to-br from-coral to-ink relative overflow-hidden">
+          <div class="absolute inset-6 bg-paper/95 rounded-lg p-4 grid grid-cols-2 gap-2">
+            <div class="col-span-2 h-3 w-20 bg-ink/10 rounded-full"></div>
+            <div class="h-20 rounded-md bg-ink/10"></div>
+            <div class="h-20 rounded-md bg-coral/30"></div>
+            <div class="h-20 rounded-md bg-cobalt/20"></div>
+            <div class="h-20 rounded-md bg-ink/10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- case 3 -->
+    <div class="reveal grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div class="lg:col-span-5">
+        <div class="case-image aspect-[4/5] rounded-card bg-gradient-to-br from-sage to-inksoft relative overflow-hidden">
+          <div class="absolute inset-6 bg-paper/95 rounded-lg p-4 flex flex-col gap-2.5">
+            <div class="h-2.5 w-1/3 bg-ink/10 rounded-full"></div>
+            <div class="h-9 rounded-md bg-ink/10 flex items-center px-3"><span class="h-1.5 w-1.5 rounded-full bg-sage mr-2"></span><span class="h-1.5 w-16 bg-ink/20 rounded-full"></span></div>
+            <div class="h-9 rounded-md bg-ink/10 flex items-center px-3"><span class="h-1.5 w-1.5 rounded-full bg-coral mr-2"></span><span class="h-1.5 w-20 bg-ink/20 rounded-full"></span></div>
+            <div class="h-9 rounded-md bg-ink/10 flex items-center px-3"><span class="h-1.5 w-1.5 rounded-full bg-cobalt mr-2"></span><span class="h-1.5 w-12 bg-ink/20 rounded-full"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="mono-tag border border-line rounded-full px-3 py-1">Enterprise</span>
+          <span class="mono-tag border border-line rounded-full px-3 py-1">Dashboard</span>
+          <span class="mono-tag border border-line rounded-full px-3 py-1">RBAC</span>
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl mb-6">College ERP — one system, three roles</h3>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">GOAL</p>
+            <p class="text-inksoft leading-relaxed">Replace three disconnected tools with one system that students, faculty and admins could all use.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">APPROACH</p>
+            <p class="text-inksoft leading-relaxed">Mapped permissions and data flows before any screen existed, so UI could follow one role-based logic layer.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">SOLUTION</p>
+            <p class="text-inksoft leading-relaxed">Role-aware dashboards with one consistent navigation shell — actions only appear when a role can use them.</p>
+          </div>
+          <div>
+            <p class="text-xs mono-tag text-inkfaint mb-2">STACK</p>
+            <p class="text-inksoft leading-relaxed font-mono text-sm">Spring Boot · PostgreSQL · JWT/RBAC · Swagger</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= METHODOLOGY / PROCESS ================= -->
+<section id="process" class="px-6 md:px-10 py-28 md:py-36 bg-ink text-paper">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal mb-16">
+      <p class="mono-tag uppercase text-paper/50 mb-3">The process</p>
+      <h2 class="font-display text-3xl md:text-4xl leading-tight max-w-xl">Same four steps, every project.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-px bg-paper/10 rounded-card overflow-hidden">
+      <div class="reveal bg-ink p-8 md:p-9">
+        <p class="mono-tag text-paper/40 mb-8">01</p>
+        <h3 class="font-display text-xl mb-3">Discovery</h3>
+        <p class="text-paper/60 text-sm leading-relaxed">Understand the users, the constraints and what "done" actually means before opening Figma.</p>
+      </div>
+      <div class="reveal bg-ink p-8 md:p-9">
+        <p class="mono-tag text-paper/40 mb-8">02</p>
+        <h3 class="font-display text-xl mb-3">Prototyping</h3>
+        <p class="text-paper/60 text-sm leading-relaxed">Wireframes, then a real design system, then high-fidelity screens the team can react to fast.</p>
+      </div>
+      <div class="reveal bg-ink p-8 md:p-9">
+        <p class="mono-tag text-paper/40 mb-8">03</p>
+        <h3 class="font-display text-xl mb-3">Development</h3>
+        <p class="text-paper/60 text-sm leading-relaxed">Build the components myself where useful, so nothing gets lost in a design-to-code handoff.</p>
+      </div>
+      <div class="reveal bg-ink p-8 md:p-9">
+        <p class="mono-tag text-paper/40 mb-8">04</p>
+        <h3 class="font-display text-xl mb-3">Handoff</h3>
+        <p class="text-paper/60 text-sm leading-relaxed">Documented components, redlines and a system that survives past the first release.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="px-6 md:px-10 py-28 md:py-36">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="reveal lg:col-span-5">
+      <div class="aspect-[4/5] rounded-card bg-gradient-to-br from-paperdim to-line relative overflow-hidden border border-line">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="font-display text-8xl text-ink/10">AD</span>
+        </div>
+        <div class="absolute bottom-5 left-5 right-5 bg-paper/90 border border-line rounded-lg px-4 py-3 flex items-center justify-between">
+          <span class="mono-tag text-inksoft">Based in India</span>
+          <span class="w-2 h-2 rounded-full bg-sage"></span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal lg:col-span-7">
+      <p class="mono-tag uppercase text-inkfaint mb-3">About</p>
+      <h2 class="font-display text-3xl md:text-4xl leading-tight mb-6">Started in engineering. Stayed for the design.</h2>
+      <p class="text-inksoft text-lg leading-relaxed mb-5">I came up building things — APIs, mobile apps, backend systems — before I came up designing them. That order matters: I don't design screens that are expensive or awkward to build, because I've had to build them myself.</p>
+      <p class="text-inksoft text-lg leading-relaxed mb-10">Today I split my time between UI/UX design, brand work, and full-stack prototypes for clients who need both sides of a product handled by one person who actually talks to the other.</p>
+      <div class="grid grid-cols-3 gap-6 border-t border-line pt-8">
+        <div>
+          <p class="font-display text-3xl">3+</p>
+          <p class="text-xs text-inksoft mt-1">Years in practice</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl">10+</p>
+          <p class="text-xs text-inksoft mt-1">Shipped projects</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl">2</p>
+          <p class="text-xs text-inksoft mt-1">Disciplines, one person</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section id="contact" class="px-6 md:px-10 py-28 md:py-36 bg-cobalt text-paper relative overflow-hidden">
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="reveal max-w-2xl">
+      <p class="mono-tag uppercase text-paper/60 mb-4">Get in touch</p>
+      <h2 class="font-display text-4xl md:text-6xl leading-[1.02] mb-8">Have a project<br />worth designing well?</h2>
+      <p class="text-paper/80 text-lg leading-relaxed mb-10 max-w-lg">Tell me what you're building and where it's stuck — design, development, or the gap between them. I reply within a day.</p>
+      <a href="mailto:designwithme.aman@gmail.com" class="inline-flex items-center gap-3 bg-paper text-ink px-7 py-4 rounded-full font-medium text-lg hover:bg-ink hover:text-paper transition focus-ring">
+        hello@DZ!GN.com
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+  <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-paper/5"></div>
+  <div class="absolute -top-16 right-1/3 w-56 h-56 rounded-full bg-paper/5"></div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="px-6 md:px-10 py-14 border-t border-line">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+    <div>
+      <p class="font-display font-semibold text-lg mb-2">DZ!GN</p>
+      <p class="text-sm text-inksoft">Product &amp; UX Designer, building interfaces and the systems behind them.</p>
+    </div>
+    <nav class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-inksoft">
+      <a href="#work" class="hover:text-ink transition">Work</a>
+      <a href="#services" class="hover:text-ink transition">Services</a>
+      <a href="#process" class="hover:text-ink transition">Process</a>
+      <a href="#about" class="hover:text-ink transition">About</a>
+    </nav>
+    <div class="flex gap-5 text-sm mono-tag text-inksoft">
+      <a href="#" class="hover:text-ink transition">LinkedIn</a>
+      <a href="#" class="hover:text-ink transition">GitHub</a>
+      <a href="#" class="hover:text-ink transition">Behance</a>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-line text-xs text-inkfaint flex flex-col md:flex-row justify-between gap-2">
+    <span>© 2026 Aman. All rights reserved.</span>
+    <span>Designed &amp; built by <a href="https://www.designwithme.aman" class="hover:text-ink transition font-medium">DZ!GN</a></span>
+  </div>
+</footer>
+
+<script>
+  // mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
